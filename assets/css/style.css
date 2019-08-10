@@ -8,6 +8,14 @@ body {
     text-align: center;
 }
 
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
 strong { font-weight: 600; }
 
 a, a:hover, a:focus { color: #9b59b6; text-decoration: none; transition: all .3s; }
@@ -269,7 +277,8 @@ img { max-width: 100%; }
 .about-us-box-text a { border-bottom: 1px dashed #9b59b6; }
 .about-us-box-text a:hover, .about-us-box-text a:focus { border: 0; }
 
-.about-us-box-img img {
+.about-me-box-img img {
+	margin-top: 80px;
 	border-radius: 4px;
 }
 
