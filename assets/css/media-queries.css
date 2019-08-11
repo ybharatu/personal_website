@@ -31,7 +31,7 @@
 
 @media (max-width: 767px) {
 	
-	.navbar.navbar-no-bg { background: #444; }
+	.navbar.navbar-no-bg { background: #333; }
 	.navbar-dark .navbar-toggler { border-color: #444; }
 	.navbar-dark .navbar-toggler:focus { background: #333; outline: 0; }
 	.navbar-expand-md .navbar-nav .nav-link { padding-top: 0.3rem; padding-bottom: 0.3rem; }
