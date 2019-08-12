@@ -1,0 +1,23 @@
+{
+  "name": "personal_website",
+  "version": "1.0.0",
+  "description": "Server for my website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybharatu/personal_website.git"
+  },
+  "author": "Yash Bharatula",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ybharatu/personal_website/issues"
+  },
+  "homepage": "https://github.com/ybharatu/personal_website#readme",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1"
+  }
+}
