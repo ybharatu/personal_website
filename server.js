@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-app.use("assets/", express.static('./assets/'));
+app.use(express.static(__dirname + '/assets'));
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
