@@ -6,11 +6,9 @@ const port = process.env.PORT || 3000
 app.use(express.static(__dirname + '/assets'));
 app.set('view engine', 'ejs')
 
-if (process.env.LE_URL && process.env.LE_CONTENT) {
-  app.get(process.env.LE_URL, function(req, res) {
-    return res.send(process.env.LE_CONTENT)
-  });
-}
+app.get('/.well-known/acme-challenge/Tu-OKRCGPX9YlzcfKKQRhFMr68hJn08GNgO12uq-7_o', function(req, res) {
+  res.send('Tu-OKRCGPX9YlzcfKKQRhFMr68hJn08GNgO12uq-7_o.96BF3Cazuj4DF3MFKt4XU2VuOuOzqP0P0rX6JWtoEYg')
+})
 
 app.get('/', function (req, res) {
 	// res.send('Hello World!')
