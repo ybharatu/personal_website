@@ -1,0 +1,24 @@
+Changelog:
+
+8/9/19:
+
+* Looked at many websites to get an idea
+
+8/10/19:
+
+* Started a git repo with a based vertical scroll website
+* Changed the structure
+* Started changing the contents
+* Deployed of Netlify
+
+8/11/19:
+
+* Changed more contents
+* Changed Experience to look like git tree
+* Added Node JS and Express to create a backend and server
+
+8/12/19:
+
+* Started to explore other webhosting solutions
+* Thinking about Deep Ocean or AWS
+* Need to make it serverless to use AWS
