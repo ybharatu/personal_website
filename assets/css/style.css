@@ -184,6 +184,8 @@ img { max-width: 100%; }
 	background: #000000;
 	/*-o-transition: all .6s; -moz-transition: all .6s; -webkit-transition: all .6s; -ms-transition: all .6s; transition: all .6s;*/
 	backface-visibility: hidden;
+	top: 0px;
+	position: fixed;
 }
 .navbar.navbar-no-bg { background: #000000; background: rgba(0, 0, 0, .2); }
 
