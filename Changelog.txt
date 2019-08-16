@@ -26,3 +26,6 @@ Changelog:
 8/15/19:
  
 * Added server functionality to add pages
+* Created Empty Pages for Purdue, UCSD, Garmin, and AMD
+* Filled Purdue Page
+* Linked all pages to website

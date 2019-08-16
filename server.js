@@ -18,8 +18,20 @@ app.get('/purdue_page', function (req, res) {
 	// res.send('Hello World!')
 	res.render('purdue_page');
 })
+app.get('/garmin_page', function (req, res) {
+	// res.send('Hello World!')
+	res.render('garmin_page');
+})
+app.get('/ucsd_page', function (req, res) {
+	// res.send('Hello World!')
+	res.render('ucsd_page');
+})
+app.get('/amd_page', function (req, res) {
+	// res.send('Hello World!')
+	res.render('amd_page');
+})
 
 app.listen(port, function () {
-	console.log('Example app listening on port 3000!')
+	console.log('Website app listening on port 3000!')
 })
 
