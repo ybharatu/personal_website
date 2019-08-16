@@ -14,6 +14,10 @@ app.get('/', function (req, res) {
 	// res.send('Hello World!')
 	res.render('index');
 })
+app.get('/purdue_page', function (req, res) {
+	// res.send('Hello World!')
+	res.render('purdue_page');
+})
 
 app.listen(port, function () {
 	console.log('Example app listening on port 3000!')
