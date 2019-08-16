@@ -2,5 +2,6 @@ TO DO:
 
 - Replace names:
 	- Services -> Experience
+	- About us page -> General page name
 	
 - Created Markdown to illustrate the change log

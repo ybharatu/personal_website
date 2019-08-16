@@ -22,3 +22,7 @@ Changelog:
 * Started to explore other webhosting solutions
 * Thinking about Deep Ocean or AWS
 * Need to make it serverless to use AWS
+
+8/15/19:
+ 
+* Added server functionality to add pages
