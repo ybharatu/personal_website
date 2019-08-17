@@ -58,11 +58,11 @@ app.post('/contact', function (req, res) {
   smtpTrans.sendMail(mailOpts, function (error, response) {
     if (error) {
       // res.render('contact-failure');
-      res.render('failure')
+      res.render('contact-failure')
     }
     else {
       // res.render('contact-success');
-      res.render('index')
+      res.render('contact-success')
     }
   });
 });
