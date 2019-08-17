@@ -29,3 +29,9 @@ Changelog:
 * Created Empty Pages for Purdue, UCSD, Garmin, and AMD
 * Filled Purdue Page
 * Linked all pages to website
+* researched load more box (https://stackoverflow.com/questions/51538010/how-to-display-the-next-three-images-click-on-load-more-button)
+
+8/16/19:
+
+* Fixed links
+* Made navbar stay in the same place
