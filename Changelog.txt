@@ -36,3 +36,7 @@ Changelog:
 * Fixed links
 * Made navbar stay in the same place
 * Trying to figure out loading in more projects
+
+8/17/19:
+
+* Added email functionality
