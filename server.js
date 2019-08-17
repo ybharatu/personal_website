@@ -38,34 +38,34 @@ app.get('/amd_page', function (req, res) {
 })
 
 // POST route from contact form
-// app.post('/contact', function (req, res) {
-//   let mailOpts, smtpTrans;
-//   smtpTrans = nodemailer.createTransport({
-//     host: 'smtp.gmail.com',
-//     port: 465,
-//     secure: true,
-//     auth: {
-//       user: yashwanthb,
-//       pass: syiaripdkuwyqohc
-//     }
-//   });
-//   mailOpts = {
-//     from: req.body.name + ' &lt;' + req.body.email + '&gt;',
-//     to: yashwanthb,
-//     subject: 'New message from contact form at tylerkrys.ca',
-//     text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`
-//   };
-//   smtpTrans.sendMail(mailOpts, function (error, response) {
-//     if (error) {
-//       // res.render('contact-failure');
-//       res.render('failure')
-//     }
-//     else {
-//       // res.render('contact-success');
-//       res.render('index')
-//     }
-//   });
-// });
+app.post('/contact', function (req, res) {
+  let mailOpts, smtpTrans;
+  smtpTrans = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS
+    }
+  });
+  mailOpts = {
+    from: req.body.name + ' &lt;' + req.body.email + '&gt;',
+    to: process.env.GMAIL_USER,
+    subject: 'New message from contact form at yashbharatula.com',
+    text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`
+  };
+  smtpTrans.sendMail(mailOpts, function (error, response) {
+    if (error) {
+      // res.render('contact-failure');
+      res.render('failure')
+    }
+    else {
+      // res.render('contact-success');
+      res.render('index')
+    }
+  });
+});
 
 app.listen(port, function () {
 	console.log('Website app listening on port 3000!')
