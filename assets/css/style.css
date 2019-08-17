@@ -458,7 +458,7 @@ img { max-width: 100%; }
 .gallery .item {
     flex: 1 1 25%;
     margin: 0 15px;
-    width: 0;
+    /*width: 0;*/
     overflow: hidden
 }
 
@@ -1004,6 +1004,7 @@ pre>code {
 .portfolio-box {
 	padding-top: 30px;
 	text-align: left;
+	display: none
 }
 
 .portfolio-box-image {
@@ -1022,7 +1023,7 @@ pre>code {
 }
 
 .portfolio-box h3 {
-	/*margin-top: 30px;*/
+	margin-top: 30px;
 }
 .portfolio-box h3 a { color: #FFFFFF; }
 .portfolio-box h3 a:hover, .portfolio-box h3 a:focus { color: white; }

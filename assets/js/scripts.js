@@ -12,6 +12,17 @@ function scroll_to(clicked_link, nav_height) {
 }
 
 
+$(function() {
+  $(".portfolio-box").slice(0, 3).show(); // select the first 3
+  $("#load").click(function(e) { // click event for load more
+    e.preventDefault();
+    $(".portfolio-box:hidden").slice(0, 3).show(); // select next 3 hidden divs and show them
+    if ($(".portfolio-box:hidden").length == 0) { // check if any hidden divs still exist
+      alert("No more divs"); // alert if there are none left
+    }
+  });
+});
+
 jQuery(document).ready(function() {
 	
 	/*
