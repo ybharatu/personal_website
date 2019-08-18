@@ -459,13 +459,16 @@
 	                </div>
 	            </div>
 	            <div class="row">
-   					<form action="/python/add" id="python-add" method="get" role="form">
+   					<form method="post" action="/python/add" id="python-add" role="form">
 					  <fieldset>
 					    <label for="num1">num1 &#42;</label>
-					    <input id="num1" name="name" type="text" placeholder="num1" required="required">
+					    <input id="num1" name="num1" type="text" placeholder="num1" required="required">
 					    <label for="num2">num2 &#42;</label>
-					    <input id="num2" name="email" type="text" placeholder="num2" required="required">
+					    <input id="num2" name="num2" type="text" placeholder="num2" required="required">
 					    <button type="submit">Submit</button>
+					    <% if(pyresult !== null){ %>
+          					<p><%= pyresult %></p>
+        				<% } %>
 					    <td colspan="3"><input type="text" id="pyresult"/></td>
 					  </fieldset>
 					</form>

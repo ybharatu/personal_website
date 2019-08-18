@@ -22,7 +22,7 @@ app.get('/.well-known/acme-challenge/Tu-OKRCGPX9YlzcfKKQRhFMr68hJn08GNgO12uq-7_o
 
 app.get('/', function (req, res) {
 	// res.send('Hello World!')
-	res.render('index');
+	res.render('index', { pyresult: null } );
 })
 app.get('/purdue_page', function (req, res) {
 	// res.send('Hello World!')
@@ -71,19 +71,31 @@ app.post('/contact', function (req, res) {
   });
 });
 
-app.get('/python/add', function(req, res) {
+app.post('/python/add', function(req, res) {
 	const { spawn } = require('child_process');
-	console.log("First op is " + document.getElementById('num1'));
-	console.log("Second op is " + document.getElementById('num2'));
+	var num1 = req.body.num1;
+	var num2 = req.body.num2;
+	console.log("num1 is " + num1);
+	console.log("num2 is " + num2);
 
-    const pyProg = spawn('python', ['/python/add.py', req.body.op1, req.body.op2]);
 
-    pyProg.stdout.on('data', function(data) {
-        console.log(data.toString());
-        // res.write(data);
-        // res.end('end');
-        document.getElementById("pyresult").value = data;
-    });
+    const pyProg = spawn('python3', ['/python/add.py', num1, num2]);
+    console.log("Got here");
+
+    pyProg.on('exit', code => {
+	  console.log(`Exit code is: ${code}`);
+	  res.pyresult = code;
+	  res.render('/python/add', {pyresult: code} );
+	});
+
+    // pyProg.stdout.on('data', function(data) {
+    // 	console.log("got here?");
+    //     console.log(data.toString());
+    //     // res.write(data);
+    //     // res.end('end');
+    //     res.render('index', {pyresult: data });
+    //     //document.getElementById("pyresult").value = data;
+    // });
 });
 
 app.listen(port, function () {
