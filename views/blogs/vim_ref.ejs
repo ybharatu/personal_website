@@ -57,6 +57,12 @@
                         </h4>
                         <h5> Vim Basics: Navigation </h5>
                         <pre class="prettyprint">
+                            h or j or k or l "Move left/down/up/right"
+                        </pre>
+                        <p>
+                            Closer to your fingers than arrow keys.
+                        </p>
+                        <pre class="prettyprint">
                              G or ]]     "Jump to the last line"
                         </pre>
                         <pre class="prettyprint">
@@ -170,6 +176,90 @@
                         </pre>
                         <p>
                             Both of these commands will cause you to enter insert mode.
+                        </p>
+                        <pre class="prettyprint">
+                            u "Undo the last action"
+                        </pre>
+                        <pre class="prettyprint">
+                            CTRL-R "Redo the last action"
+                        </pre>
+                        <p>
+                            Undo and Redo commands
+                        </p>
+                        <pre class="prettyprint">
+                           . "Repeat action just performed"
+                        </pre>
+                        <pre class="prettyprint">
+                            dd "Deletes the current line (Also copies to clipboard)"
+                        </pre>
+                        <pre class="prettyprint">
+                            yy "Copy the whole current line"
+                        </pre>
+                        <p>
+                            These commands can all be prepended with a number. For example "7." will repeat the last action 7 times. "7dd" will delete 7 lines. "7yy" will copy the next 7 lines (including the current line).
+                        </p>
+                        <pre class="prettyprint">
+                            P "Paste the line above the current line"
+                        </pre>
+                        <pre class="prettyprint">
+                            p "Paste the line below the current line"
+                        </pre>
+                        <p>
+                           Classic paste command 
+                        </p>
+                        <pre class="prettyprint">
+                            r "Enable to replace one character"
+                        </pre>
+                        <pre class="prettyprint">
+                            s "Remove the character and enter insert mode"
+                        </pre>
+                        <p>
+                            'r' allows you to replace a single character without going into insert mode. 's' will remove a character and enter insert mode.
+                        </p>
+                        <pre class="prettyprint">
+                            * "Search for word below the cursor"
+                        </pre>
+                        <p>
+                            Does a search for whatever word the cursor is on. Very useful
+                        </p>
+                        <pre class="prettyprint">
+                            [l "List the lines including the word below the cursor"
+                        </pre>
+                        <p>
+                            Shows you a list of occurances of that word that include line numbers
+                        </p>
+                        <pre class="prettyprint">
+                           V "Select the whole line"
+                        </pre>
+                        <pre class="prettyprint">
+                            v "Select a portion of the current line"
+                        </pre>
+                        <pre class="prettyprint">
+                            CTRL-v "Select a text portion of multiple lines"
+                        </pre>
+                        <pre class="prettyprint">
+                            gv "Reselect the last selection made"
+                        </pre>
+                        <p>
+                            These commands deal with selections, which then can be manipulated. The UP, DOWN, RIGHT, and LEFT Keys can be used to change the selection. "CTRL-v" is useful for cropping multiple lines
+                        </p>
+                        <pre class="prettyprint">
+                            ~ "Change the case of selected character"
+                        </pre>
+                        <p>
+                            Self explanatory
+                        </p>
+                        <pre class="prettyprint">
+                            << or >> "Indent left or right"
+                        </pre>
+                        <p>
+                            Lets you indent lines. Press '.' to continue to indent in the same direction
+                        </p>
+                        <pre class="prettyprint">
+                            vip "Selects entire paragrah"
+                        </pre>
+                        <p>
+                            Can join the lines by pressing 'J' afterwards.
                         </p>
                       </div>
                   </div>
