@@ -52,18 +52,99 @@
                 <div class="col-12 col-lg-7 about-us-box wow fadeInLeft">
                       <div class="about-us-box-text" style="text-align: left;">
                         <h2>Complete Vim Reference Guide</h2>
-                        <h4>Created: 9/14/2019</h4>
-                        <h4>Updated: 9/14/2019</h4>
-                        <h5> Vim Basics </h5>
-                        <p>
-                          The following commands are basic vim commands:
-                        </p>
-                        <pre class="prettyprint" style="margin-left: 5px" >
-                             printf("Hello World!")
+                        <h4>Created: 9/13/2019
+                            Updated: 9/14/2019 
+                        </h4>
+                        <h5> Vim Basics: Navigation </h5>
+                        <pre class="prettyprint">
+                             G or ]]     "Jump to the last line"
                         </pre>
+                        <pre class="prettyprint">
+                             gg or [[   "Jump to the first line"
+                        </pre>
+                        <p>
+                            G and gg are useful for navigating throughout a file. Esepcially useful for looking at headers or adding new functions
+                        </p>
+                        <pre class="prettyprint">
+                             $   "Jump to the end of the line"
+                        </pre>
+                        <pre class="prettyprint">
+                             0   "Jump to the beginning of the line"
+                        </pre>
+                        <pre class="prettyprint">
+                             ^   "Jump to the first non-blank character in the line"
+                        </pre>
+                        <p>
+                            These commands are useful in navigating within lines. '$' can allow you to make edits to the end of the line and '0' can allow you to make edits to the beginning. '^' is useful when there is lot of identation. Personally, I find a lot more use using '^' than '0'. 
+                        </p>
+                        <pre class="prettyprint">
+                            w or CTRL-RIGHT "Move forward one word"
+                        </pre>
+                        <pre class="prettyprint">
+                            b or CTRL-LEFT "Move back one word"
+                        </pre>
+                        <p>
+                            Another pair of commands that let you navigate within a line. Its more fine grain than moving to the beginning or end of the line.
+                        </p>
+                        <pre class="prettyprint">
+                           H "Jump to the top of the screen"
+                        </pre>
+                        <pre class="prettyprint">
+                            M "Jump to the middle of the screen"
+                        </pre>
+                        <pre class="prettyprint">
+                            L "Jump to the bottom of the screen"
+                        </pre>
+                        <p>
+                            These commands are useful when navigating within a screen. They stand for (H)igh, (M)iddle, and (L)ow. These commands will not cause the screen to scroll. It will only move the cursor to a location on the currently viewable screen 
+                        </p>
+                        <pre class="prettyprint">
+                            CTRL-Y "Scroll up one line"
+                        </pre>
+                        <pre class="prettyprint">
+                            CTRL-E "Scroll down one line"
+                        </pre>
+                        <p>
+                            This pair of commands do not move the cursor. It only moves the screen up or down. Its pretty useful to see the context of the code that you are looking at. 
+                        </p>
+                        <pre class="prettyprint">
+                            CTRL-U "Scroll up half the screen"
+                        </pre>
+                        <pre class="prettyprint">
+                            CTRL-D "Scroll down half the screen" 
+                        </pre>
+                        <p>
+                            These commands allow you to navigate throughout the file. I use these commands a lot when looking throughout the file. 
+                        </p>
+                        <pre class="prettyprint">
+                            CTRL-o "Jump to the previous cursor location"
+                        </pre>
+                        <pre class="prettyprint">
+                            CTRL-i "Jump to the next cursor location"
+                        </pre>
+                        <p>
+                            These commands allow you to jump to lines that you were looking at earlier. 
+                        </p>
+                        <pre class="prettyprint">
+                            { or } "Jump to the previous/next blank line existing"
+                        </pre>
+                        <p>
+                            It allows you to skip chunks of code. Pretty useful.
+                        </p>
+                        <pre class="prettyprint">
+                            /pattern "Search for pattern forward"
+                        </pre>
+                        <pre class="prettyprint">
+                            ?pattern "Search for pattern backward"
+                        </pre>
+                        <pre class="prettyprint">
+                            n or N "Jump to the next/previous pattern found"
+                        </pre>
+                        <p>
+                            Searching for some regex pattern. Extremely useful! Lowercase n jumps to the next occurance. Uppercase N jumps to the previous occurance.
+                        </p>
                       </div>
                   </div>
-
               </div>
           </div>
         </div>
