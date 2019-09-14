@@ -36,6 +36,10 @@ app.get('/amd_page', function (req, res) {
 	// res.send('Hello World!')
 	res.render('amd_page');
 })
+app.get('/blog', function (req, res) {
+	// res.send('Hello World!')
+	res.render('blog');
+})
 
 // POST route from contact form
 app.post('/contact', function (req, res) {
