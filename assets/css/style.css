@@ -1126,6 +1126,15 @@ pre>code {
 
 /***** Blog *****/
 
+pre {
+  background-color: #eee;
+  /*border: 1px solid #999;*/
+  display: block;
+  padding: 10px;
+  text-align: left;
+  white-space: pre-line;
+};
+
 .blog-box {
 	margin-top: 30px;
 	text-align: left;
