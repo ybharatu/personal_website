@@ -40,6 +40,10 @@ app.get('/blog', function (req, res) {
 	// res.send('Hello World!')
 	res.render('blog');
 })
+app.get('/vim_ref', function (req, res) {
+  // res.send('Hello World!')
+  res.render('blogs/vim_ref');
+})
 
 // POST route from contact form
 app.post('/contact', function (req, res) {
