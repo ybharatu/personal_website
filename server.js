@@ -63,16 +63,23 @@ app.post('/contact', function (req, res) {
     subject: 'New message from contact form at yashbharatula.com',
     text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`
   };
-  smtpTrans.sendMail(mailOpts, function (error, response) {
-    if (error) {
-      // res.render('contact-failure');
-      res.render('contact-failure')
-    }
-    else {
-      // res.render('contact-success');
-      res.render('contact-success')
-    }
-  });
+  if (parseInt( req.body.answer) == 10) {
+    console.log("Correct Answer") 
+    smtpTrans.sendMail(mailOpts, function (error, response) {
+      if (error) {
+        // res.render('contact-failure');
+        res.render('contact-failure')
+      }
+      else {
+        // res.render('contact-success');
+        res.render('contact-success')
+      }
+    });
+  }
+  else {
+	console.log("Wrong Answer " + req.body.answer)
+    res.render('contact-failure')
+  }
 });
 
 app.listen(port, function () {
