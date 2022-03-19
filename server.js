@@ -22,19 +22,19 @@ app.get('/', function (req, res) {
 })
 app.get('/purdue_page', function (req, res) {
 	// res.send('Hello World!')
-	res.render('purdue_page');
+	res.render('experiences/purdue_page');
 })
 app.get('/garmin_page', function (req, res) {
 	// res.send('Hello World!')
-	res.render('garmin_page');
+	res.render('experiences/garmin_page');
 })
 app.get('/ucsd_page', function (req, res) {
 	// res.send('Hello World!')
-	res.render('ucsd_page');
+	res.render('experiences/ucsd_page');
 })
 app.get('/amd_page', function (req, res) {
 	// res.send('Hello World!')
-	res.render('amd_page');
+	res.render('experiences/amd_page');
 })
 app.get('/blog', function (req, res) {
 	// res.send('Hello World!')
