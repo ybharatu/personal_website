@@ -68,17 +68,17 @@ app.post('/contact', function (req, res) {
     smtpTrans.sendMail(mailOpts, function (error, response) {
       if (error) {
         // res.render('contact-failure');
-        res.render('contact-failure')
+        res.render('status/contact-failure')
       }
       else {
         // res.render('contact-success');
-        res.render('contact-success')
+        res.render('status/contact-success')
       }
     });
   }
   else {
 	console.log("Wrong Answer " + req.body.answer)
-    res.render('contact-failure')
+    res.render('status/contact-failure')
   }
 });
 
