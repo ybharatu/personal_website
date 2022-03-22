@@ -44,6 +44,11 @@ app.get('/vim_ref', function (req, res) {
   // res.send('Hello World!')
   res.render('blogs/vim_ref');
 })
+app.get('/janken_step', function (req, res) {
+  // res.send('Hello World!')
+  res.render('fun/janken_step');
+})
+
 
 // POST route from contact form
 app.post('/contact', function (req, res) {

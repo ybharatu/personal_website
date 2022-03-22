@@ -15,6 +15,14 @@ body {
     transform: rotate(90deg);
 }
 
+.rotate180 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
 .marginauto {
     margin: 10px auto 20px;
     display: block;
@@ -1219,3 +1227,34 @@ footer {
 }
 
 .footer-bottom a:hover, .footer-bottom a:focus { color: #888; }
+
+.tile {
+    border: 1px solid white;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.tile.janken_rock {
+    background-image:url('/img/fun/janken_step.jpeg');
+    border: 1px solid white;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.janken_container {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
+    max-width: 300px;
+}
