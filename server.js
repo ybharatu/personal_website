@@ -76,28 +76,28 @@ app.get('/janken_step', function (req, res) {
   res.render('fun/janken_step');
 })
 
-app.post('/player_point', (req, res) => {
-  const player_point = {point_Time: new Date()};
-  console.log(player_point);
-  console.log(db);
+// app.post('/player_point', (req, res) => {
+//   const player_point = {point_Time: new Date()};
+//   console.log(player_point);
+//   console.log(db);
 
-  db.collection('player_point').save(player_point, (err, result) => {
-    if (err) {
-      return console.log(err);
-    }
-    console.log('Point added to db');
-    res.sendStatus(201);
-  });
-});
+//   db.collection('player_point').save(player_point, (err, result) => {
+//     if (err) {
+//       return console.log(err);
+//     }
+//     console.log('Point added to db');
+//     res.sendStatus(201);
+//   });
+// });
 
 
-app.get('/player_point', (req, res) => {
+// app.get('/player_point', (req, res) => {
 
-  db.collection('player_point').find().toArray((err, result) => {
-    if (err) return console.log(err);
-    res.send(result);
-  });
-});
+//   db.collection('player_point').find().toArray((err, result) => {
+//     if (err) return console.log(err);
+//     res.send(result);
+//   });
+// });
 
 
 // POST route from contact form
