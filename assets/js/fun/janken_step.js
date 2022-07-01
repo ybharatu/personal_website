@@ -53,6 +53,8 @@ window.addEventListener('DOMContentLoaded', () => {
   	player_score.innerHTML = "Player Score: " + p_score
   	console.log("PLAYER SCORE: " + p_score)
   	player_score.classList.remove('hide');
+
+    
   }
 
   const comp_point = (number) => {
@@ -60,6 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
   	comp_score.innerHTML = "Computer Score: " + c_score
   	console.log("COMPUTER SCORE: " + c_score)
   	comp_score.classList.remove('hide');
+
   }
 
   const isValidAction = (index) => {
@@ -263,6 +266,18 @@ window.addEventListener('DOMContentLoaded', () => {
   	tiles[3].src="/img/fun/rock.png";
   	tiles[4].src="/img/fun/paper.png";
   	tiles[5].src="/img/fun/scissors.jpeg";
+
+    fetch('/player_point', {method: 'POST'})
+    .then(function(response) {
+      if(response.ok) {
+        console.log('Player Point was recorded');
+        return;
+      }
+      throw new Error('Post Request failed.');
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
   }
 
   resetButton.addEventListener('click', resetBoard);
@@ -280,3 +295,22 @@ window.addEventListener('DOMContentLoaded', () => {
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
+
+setInterval(function() {
+  fetch('/player_point', {method: 'GET'})
+    .then(function(response) {
+      if(response.ok) return response.json();
+      throw new Error('Get Request failed.');
+    })
+    .then(function(data) {
+      if(data == undefined){
+        document.getElementById('tile2_player').innerHTML = 'Player won 0 times';
+      }
+      else{
+        document.getElementById('tile2_player').innerHTML = 'Player won ${data.length} times';
+      }
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}, 10000);

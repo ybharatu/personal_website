@@ -1,6 +1,32 @@
 const express = require('express')
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+//#var MongoClient = require('mongodb').MongoClient;
+
+let db;
+
+// Connect to the db
+// MongoClient.connect("mongodb://localhost:27017/JankenDb", { useUnifiedTopology: true }, function (err, db) {
+//      useUnifiedTopology: true 
+//      console.log("Trying Connection...");
+//      if(err) throw err;
+
+//      //Write databse Insert/Update/Query code here..
+//      console.log("Connection Established");
+
+     
+     
+//      var dbo = db.db("JankenDb");
+//      dbo.createCollection("player_point" , function(err, res) {
+//       if (err) {
+//         console.log("ERROR? Could be it already exists");
+//       }
+//       console.log("Collection created!");
+//       db.close();
+//      });
+                
+// });
+
 require('dotenv').config();
 
 const app = express()
@@ -15,6 +41,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.get('/.well-known/acme-challenge/Tu-OKRCGPX9YlzcfKKQRhFMr68hJn08GNgO12uq-7_o', function(req, res) {
   res.send('Tu-OKRCGPX9YlzcfKKQRhFMr68hJn08GNgO12uq-7_o.96BF3Cazuj4DF3MFKt4XU2VuOuOzqP0P0rX6JWtoEYg')
 })
+
 
 app.get('/', function (req, res) {
 	// res.send('Hello World!')
@@ -48,6 +75,29 @@ app.get('/janken_step', function (req, res) {
   // res.send('Hello World!')
   res.render('fun/janken_step');
 })
+
+app.post('/player_point', (req, res) => {
+  const player_point = {point_Time: new Date()};
+  console.log(player_point);
+  console.log(db);
+
+  db.collection('player_point').save(player_point, (err, result) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('Point added to db');
+    res.sendStatus(201);
+  });
+});
+
+
+app.get('/player_point', (req, res) => {
+
+  db.collection('player_point').find().toArray((err, result) => {
+    if (err) return console.log(err);
+    res.send(result);
+  });
+});
 
 
 // POST route from contact form

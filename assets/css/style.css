@@ -1239,6 +1239,28 @@ footer {
     cursor: pointer;
 }
 
+.tile2_player {
+    border: 1px solid white;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.tile2_comp {
+    border: 1px solid white;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .tile.janken_rock {
     background-image:url('/img/fun/janken_step.jpeg');
     border: 1px solid white;
