@@ -76,65 +76,31 @@ window.addEventListener('DOMContentLoaded', () => {
   const CalcComputerChoice = () => {
   	//Computer Logic
   	rand_num = getRandomInt(8);
-  	switch(rand_num){
-  		case 0:
-  			tiles[0].innerText = "ROCK";
-  			tiles[1].innerText = "";
-  			tiles[2].innerText = "";
-  			tiles[1].src="/img/fun/na.png";
-  			tiles[2].src="/img/fun/na.png";
-  			return 0;
-  		case 1:
-  			tiles[0].innerText = "";
-  			tiles[1].innerText = "PAPER";
-  			tiles[2].innerText = "";
-  			tiles[0].src="/img/fun/na.png";
-  			tiles[2].src="/img/fun/na.png";
-  			return 1;
-  		case 2:
-  			tiles[0].innerText = "";
-  			tiles[1].innerText = "PAPER";
-  			tiles[2].innerText = "";
-  			tiles[0].src="/img/fun/na.png";
-  			tiles[2].src="/img/fun/na.png";
-  			return 1;
-  		case 3:
-  			tiles[0].innerText = "";
-  			tiles[1].innerText = "";
-  			tiles[2].innerText = "SCISSORS";
-  			tiles[0].src="/img/fun/na.png";
-  			tiles[1].src="/img/fun/na.png";
-  			return 2;
-  		case 4:
-  			tiles[0].innerText = "";
-  			tiles[1].innerText = "";
-  			tiles[2].innerText = "SCISSORS";
-  			tiles[0].src="/img/fun/na.png";
-  			tiles[1].src="/img/fun/na.png";
-  			return 2;
-  		case 5:
-  			tiles[0].innerText = "";
-  			tiles[1].innerText = "";
-  			tiles[2].innerText = "SCISSORS";
-  			tiles[0].src="/img/fun/na.png";
-  			tiles[1].src="/img/fun/na.png";
-  			return 2;
-  		case 6:
-  			tiles[0].innerText = "";
-  			tiles[1].innerText = "";
-  			tiles[2].innerText = "SCISSORS";
-  			tiles[0].src="/img/fun/na.png";
-  			tiles[1].src="/img/fun/na.png";
-  			return 2;
-  		case 7:
-  			tiles[0].innerText = "";
-  			tiles[1].innerText = "";
-  			tiles[2].innerText = "SCISSORS";
-  			tiles[0].src="/img/fun/na.png";
-  			tiles[1].src="/img/fun/na.png";
-  			return 2;
 
-  	}
+    if (rand_num == 0) {
+       tiles[0].innerText = "ROCK";
+       tiles[1].innerText = "";
+       tiles[2].innerText = "";
+       tiles[1].src="/img/fun/na.png";
+       tiles[2].src="/img/fun/na.png";
+       return 0;
+    }
+    if (rand_num >= 1 && rand_num <= 2){
+       tiles[0].innerText = "";
+       tiles[1].innerText = "PAPER";
+       tiles[2].innerText = "";
+       tiles[0].src="/img/fun/na.png";
+       tiles[2].src="/img/fun/na.png";
+       return 1;
+    }
+    if (rand_num >= 3){
+       tiles[0].innerText = "";
+       tiles[1].innerText = "";
+       tiles[2].innerText = "SCISSORS";
+       tiles[0].src="/img/fun/na.png";
+       tiles[1].src="/img/fun/na.png";
+       return 2;
+    }
 
   }
 
