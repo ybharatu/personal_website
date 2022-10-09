@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.5, user-scalable=yes">
+<meta charset="utf-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.5, shrink-to-fit=no"> -->
+<title>How I created a 2048 bot</title>
+
+<!-- CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+        <link rel="stylesheet" href="/css/animate.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/media-queries.css">
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="/ico/pcb.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css">
+       <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
+       <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen"/>
+  </head>
+
+<body>
+
+        <!-- Top menu -->
+        <nav class="navbar navbar-dark fixed-top navbar-expand-md navbar-no-bg">
+          <div class="container">
+            <a class="navbar-brand" href="/">Personal Website</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button> 
+          </div>
+        </nav>
+
+        <div class="about-container section-container section-container-gray-bg">
+          <div class="container">
+              <div class="row">
+                <div class="col-12 col-lg-7 about-us-box wow fadeInLeft">
+                      <div class="about-us-box-text" style="text-align: left;">
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+  body {
+    padding: 2cm; 
+  }
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">How I created a 2048 bot</h1>
+
+<p><img src="/img/blog/2048_bot/2048.png" alt="2048 logo"></p>
+
+<h2 id="toc_1">Introduction</h2>
+
+<p>I am definately late to the party of playing 2048. I remember it becoming extremely popular when I was in high school. I remember not playing it very much though. </p>
+
+<p>Fast forward to the past couple of months. My partner downloaded the app and was having fun. She was able to get 2048 within the first day of playing. After that, I wanted to try too. So I downloaded the app and began combining powers of two. I was able to get to 2048 soon enough as well, but in that time, my partner just got 4096. Even though the aim is to get to 2048, you can still acheive higher scores by continuing to play after acquiring 2048, surpassing the capped goal. We kept playing, and I was able to consistenly get 2048 and she was consistently getting 4096. One day, she was able to get 8192. </p>
+
+<p>At this point, I felt like catching up to her was getting harder and harder. So then I wondered if I couldn&#39;t get that high, could I write a program that could. </p>
+
+<h2 id="toc_2">First steps: Getting the board</h2>
+
+<p>I decided to make my bot in python, a language that I am comfortable and experienced in writing in that will also have plenty of libraries and support that I might need. The main flow of the program, I determined, would be: to take a screenshot of the online game, determine which move would be the best, and to emulate the intended direction. The website I used to test my code can be found <a href="https://2048game.com/">here</a>.</p>
+
+<p>I decided to start work on the first step. I decided to use the pillow library for its image grab function to take a sceenshot of the board after every move, which is necessary because an additional number, a 2 or a 4, gets introduced to the board after each move. The next problem that I faced was getting the numbers from the image. I have read about a library called pytesseract that can do string reads from images and I wanted to explore that. So I manually enetered in coordinates for each tile and cropped the screenshot to the individual tiles. Below is the code for my intial attempt:</p>
+
+<div><pre><code class="language-none">    for i in range(NUM_TILES):
+        im_list.append(screenshot.crop(coord_list[i]))
+        t_value = pytesseract.image_to_string(im_list[i], config=custom_config).strip()
+        if t_value.isnumeric():
+            board[i] = t_value
+        else:
+            board[i] = &quot;-&quot;</code></pre></div>
+
+<p>This initial naive implementation was not accurate. It often missed numbers, and somtimes mislabled tiles. 
+<img src="/img/blog/2048_bot/bad_capture.png" alt="Bad capture">
+I needed to do some more work pre prossessing the image to make it accurate. After some experimentation, I found that converting the image to grayscale, applying a Gaussian blur and then applying a binary threshold function will allow the pytesseract to read the image with very good accuracy. I also thought about just using the colors of the tile to determine the numbers, but my approach just sounded more fun to me. </p>
+
+<p><img src="/img/blog/2048_bot/really_bad_capture.png" alt="Really bad capture">
+<img src="/img/blog/2048_bot/closer_capture.png" alt="Better capture">
+<img src="/img/blog/2048_bot/good_capture.png" alt="Good capture"></p>
+
+<h2 id="toc_3">Step 2: Making a prototype</h2>
+
+<p>The next step in the pipeline would be to determine which move would be the best at a given state. However, I wanted to ensure the bot would work before spending large amounts of time on this logic. So I decided to create a completely random move creater to serve as a placeholder. </p>
+
+<div><pre><code class="language-none">UP = 500
+DOWN = 501
+RIGHT = 502
+LEFT = 503
+
+valid_dirs = [UP, DOWN, RIGHT, LEFT]
+
+def get_random_direction_move():
+    rand_value = random.randrange(4)
+
+    direction = valid_dirs[rand_value]
+
+    return direction</code></pre></div>
+
+<p>Then I wrote the logic to emulate the key presses based on the direction dictated by the get<em>random</em>direction_move function. </p>
+
+<div><pre><code class="language-none">def make_move(direction):
+    if direction == UP:
+        pyautogui.press(&quot;up&quot;)
+    elif direction == DOWN:
+        pyautogui.press(&quot;down&quot;)
+    elif direction == RIGHT:
+        pyautogui.press(&quot;right&quot;)
+    elif direction == LEFT:
+        pyautogui.press(&quot;left&quot;)
+    else:
+        print(&quot;Uh oh, direction cannot be: &quot; + str(direction))
+        exit()</code></pre></div>
+
+<p>Then I made a simple main function that envokes all the main functions to get my first initial prototype bot. </p>
+
+<div><pre><code class="language-none">def main():
+
+    time.sleep(1)
+    while True:
+
+        screencap_board()
+
+        direction = get_random_direction_move
+
+        make_move(direction)</code></pre></div>
+
+<p>And <em>voila</em>! I have a functioning 2048 bot. It is awful at the game and cannot get a very high score, but it does work!</p>
+
+<h2 id="toc_4">The Meat and Potatoes: Decision Logic</h2>
+
+<p>Now that I have a skeleton of the program, I need to put more effort into the decision making logic, the main core of the bot. This is where the I am going to spend almost the entirety of my time. My first thought was to see what would happen if I just give weights to the random directions. I normally play this game by keeping my biggest number in the bottom right and constantly build towards that. I normally only use down and right moves, with ocassional left moves. I only swipe up, if absolutely necessary. So I tried to translate that with weights to see if that would perform better than complete random. The results were ... not that different. It still was losing at roughly the same spot as the complete random move generator. </p>
+
+<p>So my intial approach was to give each tile position weights, similar to how chess bots work. Then each board state could be given a score by multiplying the board&#39;s value with it&#39;s position&#39;s weight. So effectively, the bot will calculate how the board will look after each move and assign a score with that state. The move with the highest score gets selected. I saw an immediate improvement in the bot&#39;s performance. I experimented with different weights and evaluated them, finally ending up with a pattern that worked well for me. </p>
+
+<div><pre><code class="language-none">tile_heuristic_grid = [50, 50, 50, 50,
+                       500, 500, 500, 500,
+                       4000, 4000, 4000, 4000,
+                       50000, 50000, 50000, 50000]</code></pre></div>
+
+<p>I also brainstormed other heauristics that I thought could be helpful. Anything to impact the score that could aid in the bot&#39;s decision-making process. I came up with the following:</p>
+
+<ul>
+<li>Max Value Score</li>
+<li>Empty Tile Score</li>
+<li>Smoothness Score</li>
+<li>Combination Priority Score</li>
+</ul>
+
+<h3 id="toc_5">Max Value Score:</h3>
+
+<p>This heuristic essentially gives a big bonus for the bot to keep the largest number in the bottom right or left corner. It will also give a sizable deduction if the largest number is not in a corner. I find that this is the best strategy for the bot to play with my weights.</p>
+
+<h3 id="toc_6">Empty Tile Score:</h3>
+
+<p>This heuristic rewards bonus points for boards with empty tiles, by calculating a score by multiplying the amount of empty tiles with a constant value. This score is helpful for the bot to make moves that can combine multiple numbers. </p>
+
+<h3 id="toc_7">Smoothness Score</h3>
+
+<p>This score tries to keep numbers next to numbers that are the same as it. This tells the bot to arrange the board to combine the numbers. </p>
+
+<h3 id="toc_8">Combination Priority Score</h3>
+
+<p>This is a heuristic I added after seeing the bot make mistakes regarding situations where it can combine scores in its own row vs combining from above. The issue with combining from above is that it creates a larger number than the one next to it. This causes issues as the smaller number will take a long time to raise to that value if ever. </p>
+
+<p>With all of these heuristics, I was actually able to reach 2048.</p>
+
+<p><img src="/img/blog/2048_bot/win.png" alt="Really bad capture"></p>
+
+<h2 id="toc_9">So close, yet still far: Further Optimizations using Minimax Trees</h2>
+
+<p>My current approach only picks the best move given the current state. It has no thought about what could happen in the future. That&#39;s where minimax trees come in. The concept is fairly simple. The root of the tree is the current state, where as its children nodes are the potential states it could be. Furthermore, each node would have children that represent future game states. Theortetically, you can map all possible gamestates and make the best decision every time. Practically, we are limited by computation, space, and time. But we can create go down a couple of levels so we have some idea of potential future states. </p>
+
+<p>The pseudo code for minimax (found <a href="https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm">here</a>) is pretty simple. </p>
+
+<div><pre><code class="language-none">fun minimax(n: node): int =
+   if leaf(n) then return evaluate(n)
+   if n is a max node
+      v := L
+      for each child of n
+         v&#39; := minimax (child)
+         if v&#39; &gt; v, v:= v&#39;
+      return v
+   if n is a min node
+      v := W
+      for each child of n
+         v&#39; := minimax (child)
+         if v&#39; &lt; v, v:= v&#39;
+      return v</code></pre></div>
+
+<p>This represents the future for this project. I want this bot to be able to go much further than 2048, but it seems like it will be an onging project. I&#39;ve implemented the minimax algorithm, but I still need to work on the scoring to give the bot a better idea of what moves are the best. </p>
+
+<p>I&#39;ve made a lot of changes as this bot evolved. I eventually realized that using the color of the tile is a much better indicator of what the number is, as even if the library misses a single tile, it can really mess up the entire game. Also, I found changing the heuristic weights for any of the heuristics creates significant changes to how the bot plays the game. Experimenting with these values will also prove to be essential if I want it get truly high scores. </p>
+
+<p>Overall, this was a fun and valuable learning experience. I read a lot of algorithms in order to approach this problem, and it posed to be a good software challence for a primarily hardware developer. I&#39;m going to keep working on this project and update this post whenever I get a breakthrough. </p>
+
+<p>The code can be found <a href="https://github.com/ybharatu/2048-bot">here</a></p>
+
+<h2 id="toc_1">References</h2>
+
+<p>https://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm</p>
+
+<p>https://medium.com/@bartoszzadrony/beginners-guide-to-ai-and-writing-your-own-bot-for-the-2048-game-4b8083faaf53</p>
+
+<p>https://www.geeksforgeeks.org/2048-game-in-python/</p>
+
+
+
+    </body>
+
+</html>

@@ -2,6 +2,7 @@ const express = require('express')
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 //#var MongoClient = require('mongodb').MongoClient;
+//const {MongoClient} = require('mongodb');
 
 let db;
 
@@ -70,6 +71,10 @@ app.get('/blog', function (req, res) {
 app.get('/vim_ref', function (req, res) {
   // res.send('Hello World!')
   res.render('blogs/vim_ref');
+})
+app.get('/2048_bot', function (req, res) {
+  // res.send('Hello World!')
+  res.render('blogs/2048_bot');
 })
 app.get('/janken_step', function (req, res) {
   // res.send('Hello World!')
@@ -140,4 +145,36 @@ app.post('/contact', function (req, res) {
 app.listen(port, function () {
 	console.log('Website app listening on port 3000!')
 })
+
+// MONGO DB Code
+// async function main() {
+//   // we'll add code here soon
+//   const uri = process.env.MONGO_STRING;
+//   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+//   await client.connect();
+
+//   try {
+//         // Connect to the MongoDB cluster
+//         await client.connect();
+ 
+//         // Make the appropriate DB calls
+//         await  listDatabases(client);
+ 
+//     } catch (e) {
+//         console.error(e);
+//     } finally {
+//         await client.close();
+//   }
+// }
+
+// main().catch(console.error);
+
+// async function listDatabases(client){
+//     databasesList = await client.db().admin().listDatabases();
+ 
+//     console.log("Databases:");
+//     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+// };
+
+
 
