@@ -76,6 +76,10 @@ app.get('/2048_bot', function (req, res) {
   // res.send('Hello World!')
   res.render('blogs/2048_bot');
 })
+app.get('/genetic_xor', function (req, res) {
+  // res.send('Hello World!')
+  res.render('blogs/genetic_algorithm_decryption');
+})
 app.get('/janken_step', function (req, res) {
   // res.send('Hello World!')
   res.render('fun/janken_step');
