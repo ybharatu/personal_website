@@ -1012,7 +1012,7 @@ pre>code {
 .portfolio-box {
 	padding-top: 30px;
 	text-align: left;
-	display: none
+	/*display: none*/
 }
 
 .portfolio-box-image {
