@@ -90,6 +90,11 @@ app.get('/snake', function (req, res) {
   res.render('fun/snake');
 })
 
+app.get('/snake_ai', function (req, res) {
+  // res.send('Hello World!')
+  res.render('projects/snake_ai');
+})
+
 // app.post('/player_point', (req, res) => {
 //   const player_point = {point_Time: new Date()};
 //   console.log(player_point);
