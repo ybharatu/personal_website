@@ -85,6 +85,11 @@ app.get('/janken_step', function (req, res) {
   res.render('fun/janken_step');
 })
 
+app.get('/snake', function (req, res) {
+  // res.send('Hello World!')
+  res.render('fun/snake');
+})
+
 // app.post('/player_point', (req, res) => {
 //   const player_point = {point_Time: new Date()};
 //   console.log(player_point);
