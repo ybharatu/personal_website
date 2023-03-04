@@ -51,7 +51,7 @@ const head_border_2 = "darkgreen";
 
 const newGameButton = document.querySelector('#new_game_ai');
 const showGridButton = document.querySelector('#show_grid_ai');
-const showNumButton = document.querySelector('#show_num_ai');
+//const showNumButton = document.querySelector('#show_num_ai');
 
 // Get the canvas element
 const snakeboard = document.getElementById("snakeboard_comp");
@@ -505,7 +505,7 @@ function get_adj_matrix_2(head_idx, tail_idx, food_idx){
       // if(i == head_idx){
       //   console.log("Right: " + j);
       // }
-      if (new_head < new_tail && j > new_head && j < new_tail  && j > i ){
+      if (new_head < new_tail && j > new_head && j < new_tail && j > i ){
         //console.log("WENT TO 1: adj_matrix[" + i + "][" + j + "] = 1");
         adj_matrix[i][j] = 1;
         changed = 1;
@@ -527,7 +527,7 @@ function get_adj_matrix_2(head_idx, tail_idx, food_idx){
       // if(i == head_idx){
       //   console.log("Up: " + j);
       // }
-      if (new_head < new_tail && j > new_head && j < new_tail  && j > i ){
+      if (new_head < new_tail && j > new_head && j < new_tail && j > i ){
         //console.log("WENT TO 1: adj_matrix[" + i + "][" + j + "] = 1");
         adj_matrix[i][j] = 1;
         changed = 1;
@@ -549,7 +549,7 @@ function get_adj_matrix_2(head_idx, tail_idx, food_idx){
       // if(i == head_idx){
       //   console.log("Down: " + j);
       // }
-      if (new_head < new_tail && j > new_head && j < new_tail  && j > i ){
+      if (new_head < new_tail && j > new_head && j < new_tail && j > i ){
         //console.log("WENT TO 1: adj_matrix[" + i + "][" + j + "] = 1");
         adj_matrix[i][j] = 1;
         changed = 1;
@@ -724,9 +724,9 @@ function get_next_idx(parents, cur_idx, head_idx, iteration){
     //console.log("Returning: " + cur_idx);
     return cur_idx;
   }
-  if(iteration == num_vert){
+  if(iteration === num_vert){
     console.log("Iteration Limit: " + cur_idx + " at iteration " + iteration);
-    return cur_idx;
+    return -1;
   }
   return get_next_idx(parents, parents[cur_idx], head_idx, iteration + 1);
 }
@@ -735,7 +735,8 @@ function move_snake() {
 
   // New move snake logic using the hamiltonian path
   // Get next coordinate using cur_idx
-  if( follow_path === 1 || score > .7 * (num_vert*10 - init_length*10)){
+  //if( follow_path === 1 || score > .7 * (num_vert*10 - init_length*10)){
+  if( follow_path === 1 ){
     next_pos = path[(cur_idx+1)%(num_vert)];
   }else{
     //console.log("Food idx: " + get_idx(food_x / dx_2, food_y / dx_2));
@@ -745,9 +746,9 @@ function move_snake() {
     tail_idx = get_idx(snake.slice(-1)[0].x / dx_2, snake.slice(-1)[0].y / dx_2);
     head_idx = get_idx(snake[0].x / dx_2, snake[0].y / dx_2);
     // console.log(snake.slice(-1)[0].x + " " + snake.slice(-1)[0].y);
-    // console.log("Tail idx: " + tail_idx);
-    // console.log("Head idx: " + head_idx);
-    // console.log("Food idx: " + food_idx);
+    console.log("Tail idx: " + tail_idx);
+    console.log("Head idx: " + head_idx);
+    console.log("Food idx: " + food_idx);
     // console.log("Distance to Food: " + dist_to_food);
     total = find_path(head_idx, tail_idx, food_idx);
     distances = total[0];
@@ -762,13 +763,35 @@ function move_snake() {
       new_idx = get_next_idx(parents, food_idx, head_idx, 0);
       console.log("New idx: " + new_idx);
       next_pos = path[new_idx];
-    }else{
+    }
+    else if (head_idx != num_vert - 1 && head_idx > food_idx){
+      
+      
+      reset_idx = num_vert - 1;
+      //console.log("Heading to: " + reset_idx );
+      //console.log("HEAD Idx: " + head_idx);
+      total = find_path(head_idx, tail_idx, reset_idx);
+      distances = total[0];
+      parents = total[1];
+      new_idx = get_next_idx(parents, reset_idx, head_idx, 0);
+      if(new_idx != -1){
+        console.log("Heading towards 0 again");
+        next_pos = path[new_idx];
+      }else{
+        console.log("Using normal hamiltonian Path because of bug");
+        next_pos = path[(cur_idx+1)%(num_vert)];
+      }
+      
       // new_idx = get_next_idx(parents, food_idx, head_idx, 0);
       // console.log("New idx: " + new_idx);
       // next_pos = path[new_idx];
+      // console.log("Using normal hamiltonian Path");
+      // next_pos = path[(cur_idx+1)%(num_vert)];
+    } 
+    else{
       console.log("Using normal hamiltonian Path");
       next_pos = path[(cur_idx+1)%(num_vert)];
-    }   
+    } 
     console.log(distances);
     console.log(parents);
   }
