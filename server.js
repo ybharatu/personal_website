@@ -1,6 +1,7 @@
 const express = require('express')
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+const {spawn} = require('child_process');
 //#var MongoClient = require('mongodb').MongoClient;
 //const {MongoClient} = require('mongodb');
 
@@ -34,13 +35,20 @@ const app = express()
 
 const port = process.env.PORT || 3000
 
+// Parse URL-encoded bodies (as sent by HTML forms)
+//app.use(express.urlencoded());
+
+// Parse JSON bodies (as sent by API clients)
+//app.use(express.json());
+
 app.use(express.static(__dirname + '/assets'));
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.json());
 
 
 app.get('/.well-known/acme-challenge/Tu-OKRCGPX9YlzcfKKQRhFMr68hJn08GNgO12uq-7_o', function(req, res) {
-  res.send('Tu-OKRCGPX9YlzcfKKQRhFMr68hJn08GNgO12uq-7_o.96BF3Cazuj4DF3MFKt4XU2VuOuOzqP0P0rX6JWtoEYg')
+  res.send(process.env.LE_CONTENT)
 })
 
 
@@ -95,6 +103,10 @@ app.get('/snake_ai', function (req, res) {
   res.render('projects/snake_ai');
 })
 
+app.get('/python_test', function (req, res) {
+  // res.send('Hello World!')
+  res.render('fun/python_test');
+})
 // app.post('/player_point', (req, res) => {
 //   const player_point = {point_Time: new Date()};
 //   console.log(player_point);
@@ -118,6 +130,24 @@ app.get('/snake_ai', function (req, res) {
 //   });
 // });
 
+// POST route to python_test
+app.post('/python_test', function (req, res) {
+  var dataToSend;
+  // spawn new child process to call the python script
+  console.log("Number is " + req.body.num)
+  const python = spawn('python3', ['python_test.py']);
+  // collect data from script
+  python.stdout.on('data', function (data) {
+  console.log('Pipe data from python script ...');
+  dataToSend = data.toString();
+ });
+ // in close event we are sure that stream from child process is closed
+ python.on('close', (code) => {
+ console.log(`child process close all stdio with code ${code}`);
+ // send data to browser
+ res.send(dataToSend)
+  });
+})
 
 // POST route from contact form
 app.post('/contact', function (req, res) {
