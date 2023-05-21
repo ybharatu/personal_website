@@ -44,7 +44,17 @@ xhr.onreadystatechange = function() {
       const quotes = JSON.parse(xhr.responseText);
 
       // Get a random quote from the array
-      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const date = new Date();
+      console.log(date);
+      let year = date.getFullYear(); 
+      let month= date.getMonth()+1; 
+      let day= date.getDate();
+      // Can Create a randomization function with 3 parameters (year, month, day)
+      // Currently just take the product
+      let randomIndex = (year * month * day) % quotes.length
+      console.log(randomIndex)
+
+      //const randomIndex = Math.floor(Math.random() * quotes.length);
       const randomQuote = quotes[randomIndex];
 
       // Get the HTML header element and set its text to the quote
