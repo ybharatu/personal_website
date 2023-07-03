@@ -194,6 +194,15 @@ app.listen(port, function () {
 	console.log('Website app listening on port 3000!')
 })
 
+const fs = require('fs');
+//console.log(process.env.OMDB_KEY)
+fs.writeFile("assets/js/fun/config.js", 'const apiKey = "' + process.env.OMDB_KEY + '";', function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log("The file was saved!");
+}); 
+
 // MONGO DB Code
 // async function main() {
 //   // we'll add code here soon
