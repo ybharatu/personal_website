@@ -215,7 +215,7 @@ async function getMovieList() {
   var loc = window.location.pathname;
   var dir = loc.substring(0, loc.lastIndexOf('/'));
   console.log(dir)
-  const response = await fetch('movies.txt');
+  const response = await fetch('js/fun/movies.txt');
   const data = await response.text();
   const movies = data.split('\n');
   return movies;
