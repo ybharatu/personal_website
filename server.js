@@ -92,6 +92,10 @@ app.get('/janken_step', function (req, res) {
   // res.send('Hello World!')
   res.render('fun/janken_step');
 })
+app.get('/movie_compare', function (req, res) {
+  // res.send('Hello World!')
+  res.render('fun/movie_compare');
+})
 
 app.get('/snake', function (req, res) {
   // res.send('Hello World!')

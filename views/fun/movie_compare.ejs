@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My EJS App</title>
+  <style>
+    .container {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  height: 100vh;
+	}
+
+	.placeholder {
+	  width: 300px;
+	  height: 445px;
+	  background-color: gray;
+	  display: inline-block;
+	  margin-right: 20px;
+	}
+
+	.label {
+	  text-align: center;
+	  font-weight: bold;
+	  margin-top: 10px;
+	}
+
+	.description {
+	  text-align: center;
+	  font-weight: bold;
+	  margin-top: 10px;
+	}
+
+	button {
+	  font-size: 16px;
+	  padding: 10px;
+	  margin: 0 10px;
+	  cursor: pointer;
+	}
+
+	#higherBtn {
+	  background-color: red;
+	  color: white;
+	  width: 100px;
+	}
+
+	#lowerBtn {
+	  background-color: green;
+	  color: white;
+	  width: 100px;
+	}
+	.poster-container {
+	  position: relative;
+	  /*width: 150px;
+	  height: 500px;*/
+	}
+
+	.bar-container {
+	  /*position: relative;*/
+	  width: 10px; /* Set the width to the desired size */
+	  height: 445px; /* Set the height to 100% to fill the poster-container */
+	  background-color: #ccc; /* Set the color to gray */
+	}
+
+	.bar {
+	  /*height: 100%;*/
+	  position: relative;
+	  width: 10px; /* Set the width to the desired size */
+	  height: 300px; /* Set the height to 100% to fill the poster-container */
+	  background-color: #4CAF50;
+	  bottom: -145px
+	  /*left:10px;*/
+	}
+	.blank_bar {
+	  /*height: 100%;*/
+	  width: 10px; /* Set the width to the desired size */
+	  height: 445px; /* Set the height to 100% to fill the poster-container */
+	  background-color: #FFFFFF;
+	}
+
+
+
+  </style>
+
+</head>
+
+<body>
+<!-- Top menu -->
+<!-- <nav class="navbar navbar-dark fixed-top navbar-expand-md navbar-no-bg">
+  <div class="container">
+    <a class="navbar-brand" href="/">Personal Website</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button> 
+  </div>
+</nav> -->
+  <div class="label" id="status">Play!</div>
+  <div class="container">
+
+    <div class="poster-container">
+      <div class="label" id="label1">Loading image 1...</div>
+      <div class="placeholder" id="placeholder1"></div>
+      <div class="description" id="description1">Loading description 1...</div>
+    </div>
+    <div class="bar-container">
+      	<div class="bar" id="bar1"></div>
+    </div>
+    <div>
+      <button id="higherBtn">Higher</button>
+      <button id="lowerBtn">Lower</button>
+      <div class="label" id="chain_score">0</div>
+    </div>
+    <div class="bar-container" style="position: relative;left: -10px">
+      	<div class="bar" id="bar2" style="position: relative;height: 0px;bottom: -445px"></div>
+    </div>
+    <!-- <div class="bar-container">
+      	<div class="blank_bar" id="bar3" ></div>
+    </div> -->
+    <div class="poster-container">
+      <div class="label" id="label2">Loading image 2...</div>
+      <div class="placeholder" id="placeholder2"></div>
+      <div class="description" id="description2">Loading description 2...</div>
+    </div>
+    
+  </div>
+
+
+  <!-- <script src="/config.js"></script> -->
+  <script src="/js/fun/config.js"></script>
+  <script src="/js/fun/movie_compare.js"></script>
+  <!-- <script src="/script.js"></script> -->
+
+</body>
+</html>
