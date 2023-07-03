@@ -212,7 +212,7 @@ const getMovie = (year) => {
 };
 
 async function getMovieList() {
-  const response = await fetch('extra/movies.txt');
+  const response = await fetch('movies.txt');
   const data = await response.text();
   const movies = data.split('\n');
   return movies;
