@@ -194,6 +194,7 @@ app.listen(port, function () {
 	console.log('Website app listening on port 3000!')
 })
 
+// https://stackoverflow.com/questions/2496710/writing-to-files-in-node-js
 const fs = require('fs');
 //console.log(process.env.OMDB_KEY)
 fs.writeFile("assets/js/fun/config.js", 'const apiKey = "' + process.env.OMDB_KEY + '";', function(err) {
