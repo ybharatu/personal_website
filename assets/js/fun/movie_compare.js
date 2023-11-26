@@ -9,6 +9,8 @@ let cur_selected = 0
 let score = 0
 let all_movies
 let all_movies_len
+let recent_movies = new Array();
+let recent_size = 20
 
 const placeholder1 = document.getElementById('placeholder1');
 const placeholder2 = document.getElementById('placeholder2');
@@ -39,9 +41,13 @@ lowerButton.addEventListener('click', lowerBtn);
 
 function update_movie(cur_movie) {
   rand = Math.floor(Math.random() * all_movies_len);
-  while(rand == mov1_idx || rand == mov2_idx){
+  // Check if the random index is either movie 1 or movie 2 index and regnerate until it is not
+  while(rand == mov1_idx || rand == mov2_idx || recent_movies.indexOf(rand) > -1 ){
     rand = Math.floor(Math.random() * mov_len);
-
+  }
+  recent_movies.unshift(rand)
+  if(recent_movies.length > recent_size){
+        last_element = recent_movies.pop()
   }
   if(!cur_movie) {
     getMovieData(all_movies[rand]).then(data => {
@@ -128,17 +134,17 @@ function update_score(higher) {
       update_movie(0)
     }
     else if (cur_selected == 1 && mov2_score > mov1_score){
-      console.log("CORRECT: " + mov2_score + " is higher than " + mov1_score)
-      score = score + 1
-      score_label.innerHTML = score
-      status.innerHTML = "CORRECT"
-      update_movie(1)
-    }
-    else {
-      console.log("INCORRECT: " + mov1_score + " is higher than " + mov2_score)
+      console.log("INCORRECT: " + mov2_score + " is higher than " + mov1_score)
       score = 0
       score_label.innerHTML = score
       status.innerHTML = "INCORRECT"
+      update_movie(1)
+    }
+    else {
+      console.log("CORRECT: " + mov1_score + " is higher than " + mov2_score)
+      score = score + 1
+      score_label.innerHTML = score
+      status.innerHTML = "CORRECT"
       update_movie(1)
     }
   }
@@ -165,17 +171,17 @@ function update_score(higher) {
       update_movie(0)
     }
     else if (cur_selected == 1 && mov2_score < mov1_score){
-      console.log("CORRECT: " + mov2_score + " is lower than " + mov1_score)
-      score = score + 1
-      score_label.innerHTML = score
-      status.innerHTML = "CORRECT"
-      update_movie(1)
-    }
-    else {
-      console.log("INCORRECT: " + mov1_score + " is lower than " + mov2_score)
+      console.log("INCORRECT: " + mov2_score + " is lower than " + mov1_score)
       score = 0
       score_label.innerHTML = score
       status.innerHTML = "INCORRECT"
+      update_movie(1)
+    }
+    else {
+      console.log("CORRECT: " + mov1_score + " is lower than " + mov2_score)
+      score = score + 1
+      score_label.innerHTML = score
+      status.innerHTML = "CORRECT"
       update_movie(1)
     }
   }
@@ -190,11 +196,11 @@ function delay(time) {
 
 const getMovie = (year) => {
   const url = `${baseURL}?apikey=${apiKey}&type=movie&y=${year}&s=*&plot=full`;
-  //console.log(url)
+  console.log(url)
   // return fetch(url).then(response => response.json());
   fetch(url)
 	  .then(response => response.json())
-	  //console.log(data)
+	  console.log(data)
 	  .then(data => {
 	    const topTen = data.Search.slice(0, 10);
 	    const movieIndex = Math.floor(Math.random() * topTen.length);
@@ -212,10 +218,7 @@ const getMovie = (year) => {
 };
 
 async function getMovieList() {
-  var loc = window.location.pathname;
-  var dir = loc.substring(0, loc.lastIndexOf('/'));
-  console.log(dir)
-  const response = await fetch('js/fun/movies.txt');
+  const response = await fetch('movies.txt');
   const data = await response.text();
   const movies = data.split('\n');
   return movies;
@@ -266,8 +269,8 @@ const generateImage = (src) => {
 // };
 
 async function getMovieData(title) {
-  //console.log(`http://www.omdbapi.com/?apikey=${apiKey}&t=${title}`)
-  const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&t=${title}`);
+  console.log(`http://www.omdbapi.com/?apikey=${apiKey}&t=${title}`)
+  const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${title}`);
   const data = await response.json();
   //const poster = data.Poster;
   return data;
@@ -303,7 +306,7 @@ const dispMovies = async () => {
     // 	console.log(movies)
 
     	getMovieData(movies[rand1]).then(data => {
-    		//console.log(data)
+    		console.log(data)
   			//console.log(data.Poster);
   			const image1 = generateImage(data.Poster);
   			placeholder1.innerHTML = '';
@@ -322,7 +325,7 @@ const dispMovies = async () => {
 		});
 
 		getMovieData(movies[rand2]).then(data => {
-			//console.log(data)
+			console.log(data)
   			//console.log(data.Poster);
   			const image2 = generateImage(data.Poster);
   			placeholder2.innerHTML = '';
