@@ -269,8 +269,8 @@ const generateImage = (src) => {
 // };
 
 async function getMovieData(title) {
-  console.log(`http://www.omdbapi.com/?apikey=${apiKey}&t=${title}`)
-  const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${title}`);
+  console.log(`https://www.omdbapi.com/?apikey=${apiKey}&t=${title}`)
+  const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&t=${title}`);
   const data = await response.json();
   //const poster = data.Poster;
   return data;
