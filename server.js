@@ -106,6 +106,10 @@ app.get('/snake_ai', function (req, res) {
   // res.send('Hello World!')
   res.render('projects/snake_ai');
 })
+app.get('/wordle_hard_mode_bot', function (req, res) {
+  // res.send('Hello World!')
+  res.render('projects/wordle_hard_mode_bot');
+})
 
 app.get('/python_test', function (req, res) {
   // res.send('Hello World!')
