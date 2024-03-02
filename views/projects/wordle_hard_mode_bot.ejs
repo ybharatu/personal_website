@@ -51,9 +51,24 @@
         h1 {
             text-align: center;
         }
+        .month {
+            cursor: pointer;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .month:hover {
+            background-color: #e0e0e0;
+        }
         .poem-list {
             list-style: none;
             padding: 0;
+            display: none;
+        }
+        .poem-list.active {
+            display: block;
         }
         .poem-list li {
             margin-bottom: 20px;
@@ -68,7 +83,7 @@
     </head>
 
     <body>
-        
+
         <!-- Top menu -->
         <nav class="navbar navbar-dark fixed-top navbar-expand-md navbar-no-bg">
           <div class="container">
@@ -82,37 +97,69 @@
         <!-- INSERT CODE HERE -->
         <div class="container">
         <h1>Poetry Archive</h1>
-        <ul class="poem-list" id="poemList">
-            <!-- Poems will be dynamically added here -->
-        </ul>
+        <div class="months">
+            <!-- Months will be dynamically added here -->
+        </div>
     </div>
-
+    <!-- <script src="/js/project/poems.js" type="module"></script> -->
     <script>
         // Sample data (replace with your actual data)
         const poems = [
-            { title: "Poem 1", content: "This is the content of poem 1.", date: "2024-02-25" },
-            { title: "Poem 2", content: "This is the content of poem 2.", date: "2024-02-24" },
-            { title: "Poem 3", content: "This is the content of poem 3.", date: "2024-02-23" }
+            {'title': "The Swain's Defiance", 'content': "In the realm of love, a swain did dwell,\nHis heart so tender, his tale to tell.\nBut spiteful words from a bitter foe,\nThreatened to crush his spirit low.\n\nA blacksmith by trade, with strength unfurled,\nForged words of hate that quickly swirled.\nYet the swain, with resolve so strong,\nTurned the spite into a melodic song.\n\nHe rose above the smith's cruel hand,\nWith grace and poise, he took a stand.\nFor in his heart, love did reside,\nAnd in the end, true love defied.\n\nSo let this tale of love and strife,\nRemind us all of the beauty in life.\nFor even in the face of hate's cruel myth,\nLove conquers all, as forged by the smith.\n\n", 'date': '2024-02-25'},
+            {'title': 'Echoes of Fate: A Serenade Beneath the Silver Moon', 'content': "In the shadow of the silver moon's glow,\nAn actor serenades the night, a show,\nOf a miner with a heart of gold,\nA piper with a tale yet untold.\n\nAmongst the crowd, a loser stands,\nYet in their eyes, courage expands,\nFor in their hand, a fiver gleams,\nA token of hope, or so it seems.\n\nEach one a part of life's grand play,\nEach one with a role to portray,\nSo let us embrace, with hearts entwined,\nThe beauty of fate, intertwined.\n\n", 'date': '2024-02-24'},
+            {'title': 'Whispers in the Bean Court', 'content': 'In a bustling court where shadows dance,\nBeans scattered, worth not a second glance.\nForty whispers carried on the breeze,\nTales of love and loss, of highs and deeps.\n\nEach bean a story, a secret to share,\nIn this place of beauty, beyond compare.\nCourt of dreams where hopes take flight,\nForty wishes shimmering in the night.\n\nIn this realm of magic and worth untold,\nWhere secrets lie hidden, waiting to unfold.\nA tapestry of beans in colors bright,\nIn this court where dreams ignite.\n\n', 'date': '2024-03-01'},
+            {'title': 'Whispers of the Peach Tree', 'content': "In realms where peach and devil meet,\nA story unfolds in rhythm sweet. \nBelow the howling winds of change,\nA dance of shadows, vast and strange.\n\nThrough orchards of temptation's fruit,\nWhere whispers beckon, voices mute. \nRents in time, a tear unseen,\nWhere past and present brightly glean.\n\nBeneath the fiery gaze of scorn,\nThe devil weaves a tale forlorn. \nYet in the depths of darkness deep,\nA peach tree whispers secrets keep.\n\nBelow the earth, where roots entwine,\nA balance struck, a peace divine. \nIn harmony, where yin and yang,\nA symphony of life's grand clang.\n\n", 'date': '2024-02-28'},
+            {'title': 'Ethereal Encounter', 'content': 'In the vast desert, an oasis gleams,\nWhere alien life, like a fleeting dream,\nA mirage of beauty, surreal and strange,\nAn image of wonder, a cosmic exchange.\n\nThe sands whisper secrets of the unknown,\nWhere worlds collide and mysteries are sown,\nIn this oasis where reality bends,\nAn alien image, where imagination transcends.\n\n', 'date': '2024-02-29'},
+            {'title': 'Eternal Pulse', 'content': 'Anode, a beacon brightly gleams,\nIts electric charge, a force unseen,\nSince time immemorial it beams,\nA guiding light, a constant serene.\n\nSense sought in this cosmic stream,\nEchoes of knowledge, echoes of dreams,\nAnode sparks a truth supreme,\nIn its glow, clarity redeems.\n\n', 'date': '2024-02-27'},
+            {'title': 'Embers of the Urban Jungle', 'content': "In the heart of the urban sprawl,\nWhere buildings rise like giants tall,\nA woman walks, her purse in hand,\nThrough streets where dreams and fears are fanned.\n\nThe city's pulse beats loud and strong,\nA rhythm to which she belongs,\nBut hidden deep within her purse,\nIs a secret, a flame, a subtle curse.\n\nFor in its depths, the embers burn,\nA brunt of memories she must discern,\nOf love lost and dreams deferred,\nIn this concrete jungle where truth is blurred.\n\nSo she walks on, amidst the throng,\nHer purse a weight, her spirit strong,\nAnd though the city may seem austere,\nShe carries her past, her future near.\n\n", 'date': '2024-03-02'}
             // Add more poems as needed
         ];
 
         // Function to display poems
         function displayPoems() {
-            const poemList = document.getElementById('poemList');
-            poemList.innerHTML = ''; // Clear previous content
+            const monthsContainer = document.querySelector('.months');
+            const months = {};
 
             poems.forEach(poem => {
-                const listItem = document.createElement('li');
-                const poemDate = new Date(poem.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-
-                listItem.innerHTML = `
-                    <h2>${poem.title}</h2>
-                    <p>Date: ${poemDate}</p>
-                    <p>${poem.content}</p>
-                `;
-                poemList.appendChild(listItem);
+                const date = new Date(poem.date);
+                const monthYear = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+                if (!months[monthYear]) {
+                    months[monthYear] = [];
+                }
+                months[monthYear].push(poem);
             });
+
+            for (const [monthYear, poems] of Object.entries(months)) {
+                const monthDiv = document.createElement('div');
+                monthDiv.classList.add('month');
+                monthDiv.textContent = monthYear;
+                monthsContainer.appendChild(monthDiv);
+
+                const poemList = document.createElement('ul');
+                poemList.classList.add('poem-list');
+                monthsContainer.appendChild(poemList);
+
+                poems.forEach(poem => {
+                    const listItem = document.createElement('pre');
+                    const poemDate = new Date(poem.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+                    listItem.innerHTML = `
+                        <h2>${poem.title}</h2>
+                        <p>Date: ${poemDate}</p>
+                        <p>${poem.content}</p>
+                    `;
+                    poemList.appendChild(listItem);
+                });
+            }
         }
+
+        // Toggle visibility of poem list on clicking month
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('month')) {
+                const poemList = event.target.nextElementSibling;
+                poemList.classList.toggle('active');
+            }
+        });
 
         // Call the displayPoems function when the page loads
         window.onload = displayPoems;
