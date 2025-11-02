@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT HTML to PDF</title>
+  <link rel="stylesheet" href="/css/chatgpt2pdf.css">
+
+  <!-- html2pdf library -->
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <h1>ChatGPT HTML to PDF Converter</h1>
+  <h2>Steps</h2>
+  <p>Step 1: Open up console by pressing F12 on ChatGPT conversation</p>
+  <p>Step 2: Paste the code below and click enter</p>
+  <pre><code>
+(() => {
+  // Select all messages (inspect the page to confirm the correct selector)
+  const messages = document.querySelectorAll('[data-message-author-role]');
+
+  let htmlOutput = '';
+
+  messages.forEach(msg => {
+    const role = msg.getAttribute('data-message-author-role') || 'ChatGPT';
+    const contentEl = msg.querySelector('.markdown'); // ChatGPT messages have .markdown for HTML content
+    if (!contentEl) return; // skip empty messages
+
+    // Wrap each message in a div with role label
+    htmlOutput += `<div class="${role}" style="margin-bottom: 1em;">`;
+    htmlOutput += `<strong>${role === 'user' ? 'User' : 'ChatGPT'}:</strong><br>`;
+    htmlOutput += contentEl.innerHTML; // grab the raw HTML
+    htmlOutput += `</div>\n`;
+  });
+
+  // Copy HTML to clipboard using Chrome console helper
+  copy(htmlOutput);
+  console.log('✅ HTML copied to clipboard!');
+})();
+
+  </code></pre>
+  <p> Step 3: The html should be copied to clipboard. Paste below </p>
+
+  <div class="input-container">
+    <label for="userText">Paste your HTML conversation here:</label><br>
+    <textarea id="userText" rows="15" cols="80" placeholder="Paste HTML here..."></textarea>
+  </div>
+
+  <div class="button-container">
+    <button id="generatePDF">Generate PDF</button>
+  </div>
+
+  <script src="/js/projects/ChatGPT2PDF.js"></script>
+</body>
+</html>

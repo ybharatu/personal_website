@@ -114,6 +114,10 @@ app.get('/wordle_hard_mode_bot', function (req, res) {
   // res.send('Hello World!')
   res.render('projects/wordle_hard_mode_bot');
 })
+app.get('/chatgpt2pdf', function (req, res) {
+  // res.send('Hello World!')
+  res.render('projects/chatgpt2pdf');
+})
 
 app.get('/python_test', function (req, res) {
   // res.send('Hello World!')
