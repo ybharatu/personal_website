@@ -96,6 +96,10 @@ app.get('/movie_compare', function (req, res) {
   // res.send('Hello World!')
   res.render('fun/movie_compare');
 })
+app.get('/seven_of_hearts', function (req, res) {
+  // res.send('Hello World!')
+  res.render('fun/seven_of_hearts');
+})
 
 app.get('/snake', function (req, res) {
   // res.send('Hello World!')
@@ -109,6 +113,10 @@ app.get('/snake_ai', function (req, res) {
 app.get('/wordle_hard_mode_bot', function (req, res) {
   // res.send('Hello World!')
   res.render('projects/wordle_hard_mode_bot');
+})
+app.get('/chatgpt2pdf', function (req, res) {
+  // res.send('Hello World!')
+  res.render('projects/chatgpt2pdf');
 })
 
 app.get('/python_test', function (req, res) {

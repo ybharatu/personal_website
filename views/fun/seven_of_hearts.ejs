@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seven of Hearts</title>
+    <link rel="stylesheet" href="/css/seven_of_hearts.css">
+    <link rel="stylesheet" href="/cardsJS/cards.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- <div class="card-display" id="cardDisplay"></div> -->
+        <div class="players"> 
+    		<div class="player" id="comp1">Comp1</div> 
+    		<div class="player" id="comp2">Comp2</div> 
+    	</div>
+    	
+    	<div class="upper_section"> 
+    		<div class="hand vhand-compact" id="HeartDisplayUp">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+ 			<div class="hand vhand-compact" id="SpadeDisplayUp">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+ 			<div class="hand vhand-compact" id="DiamondDisplayUp">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+ 			<div class="hand vhand-compact" id="ClubDisplayUp">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+	    </div>
+    	<div class="seven_section"> 
+    		<div class="hand vhand-compact" id="HeartDisplay">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+ 			<div class="hand vhand-compact" id="SpadeDisplay">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+ 			<div class="hand vhand-compact" id="DiamondDisplay">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+ 			<div class="hand vhand-compact" id="ClubDisplay">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+	        <!-- <img class='card' id="HeartDisplay" src="cardsJS/cards/BLUE_BACK.svg">
+	        <img class='card' id="SpadeDisplay" src="cardsJS/cards/BLUE_BACK.svg">
+	        <img class='card' id="DiamondDisplay" src="cardsJS/cards/BLUE_BACK.svg">
+	        <img class='card' id="ClubDisplay" src="cardsJS/cards/BLUE_BACK.svg"> -->
+	    </div>
+	    <div class="lower_section"> 
+	    	<div class="hand vhand-compact" id="HeartDisplayDown">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+ 			<div class="hand vhand-compact" id="SpadeDisplayDown">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+ 			<div class="hand vhand-compact" id="DiamondDisplayDown">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+ 			<div class="hand vhand-compact" id="ClubDisplayDown">
+		   		<img class='card' src='cardsJS/cards/BLUE_BACK.svg'>
+ 			</div>
+	    </div>
+	    <div class="players"> 
+    		<div class="player" id="player1" >Player</div> 
+    	</div>
+    	<div class="hand hhand-compact active-hand" id = "player_hand">
+			  <img class='card active-hand' id = "c1">
+			  <img class='card' id = "c2">
+			  <img class='card' id = "c3">
+			  <img class='card' id = "c4">
+			  <img class='card' id = "c5">
+			  <img class='card' id = "c6">
+			  <img class='card' id = "c7">
+			  <img class='card' id = "c8">
+			  <img class='card' id = "c9">
+			  <img class='card' id = "c10">
+			  <img class='card' id = "c11">
+			  <img class='card' id = "c12">
+			  <img class='card' id = "c13">
+			  <img class='card' id = "c14">
+			  <img class='card' id = "c15">
+			  <img class='card' id = "c16">
+			  <img class='card' id = "c17">
+			  <img class='card' id = "c18">
+			  <img class='card' id = "c19">
+		</div>
+        <div class="controls">
+            <!-- <button id="higherBtn">Higher</button>
+            <button id="lowerBtn">Lower</button> -->
+            <button id="startBtn" style="visibility: visible;">Start</button>
+            
+        </div>
+        <button id="resetBtn" style="visibility: hidden;">Reset</button>
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="score">Comp 1 Score: <span id="comp1_score">0</span></div>
+        <div class="score">Comp 2 Score: <span id="comp2_score">0</span></div>
+        <div class="cur_player">Current Player: <span id="cur_player">Player</span></div>
+    </div>
+    <script src="/cardsJS/cards.js"></script>
+    <script src="/js/fun/seven_of_hearts.js"></script>
+</body>
+</html>
