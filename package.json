@@ -22,7 +22,7 @@
     "express": "^4.22.1",
     "ejs": "^3.1.10",
     "mongodb": "^3.7.3",
-    "nodemailer": "^8.0.4"
+    "nodemailer": "^8.0.5"
   },
   "engines": {
     "node": "14.x"
